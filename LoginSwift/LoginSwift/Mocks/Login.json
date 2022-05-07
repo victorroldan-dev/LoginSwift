@@ -1,0 +1,27 @@
+{
+    "users" : [
+        {
+            "id" : "234",
+            "name" : "Victor",
+            "email" : "victorroldan.dev@gmail.com",
+            "password" : "123",
+            "accessToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            
+        },
+        {
+            "id" : "2323",
+            "name" : "Admin",
+            "email" : "admin@admin.com",
+            "password" : "admin",
+            "accessToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbWluIiwiaWF0IjoxNTE2MjM5MDIyfQ.1Jy-gGjEJVq6me2f6YMguG5Pgjtmgkw1E7Qucttkbbs",
+            
+        },
+        {
+            "id" : "232343",
+            "name" : "vic",
+            "email" : "vic",
+            "password" : "vic",
+            "accessToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbWluYSIsImlhdCI6MTUxNjIzOTAyMn0.6FJp8m2SycQI2_u6we_en2qYXatzmjN9eESikhhsYD8",
+        },
+    ]
+}
