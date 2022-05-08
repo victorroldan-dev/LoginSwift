@@ -3,9 +3,10 @@
 //  LoginSwift
 //
 //  Created by Victor Roldan on 4/05/22.
-//
+// EL CÓDIGO DE LA APP BASE NO CUMPLE CON NINGÚN PATRÓN DE ARQUITECTURA
 
 import UIKit
+import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
@@ -13,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var eyeButton: UIButton!
-    
+    private var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,32 @@ class LoginViewController: UIViewController {
     
     
     @objc func loginButtonPressed(){
-        print("loginButtonPressed")
+        guard let users = Utils.parseJson(jsonName: "Login", model: UserModel.self) else {
+            showAlert("Error al obtener JSON")
+            return
+        }
+        guard let getUser = users.users?.filter({
+            $0.password == passwordTextField.text! &&
+            $0.email == emailTextField.text!}).first else{
+            showAlert("Credenciales incorrectas")
+            return
+        }
+        
+        saveUserData(user: getUser)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController{
+            //self.navigationController?.pushViewController(vc, animated: true)
+            view.window?.windowScene?.keyWindow?.rootViewController = vc
+            view.window?.windowScene?.keyWindow?.makeKeyAndVisible()
+        }
+    }
+    
+    func saveUserData(user : UserModel.Users){
+        KeychainWrapper.standard.set(user.email, forKey: "email")
+        KeychainWrapper.standard.set(user.id, forKey: "id")
+        KeychainWrapper.standard.set(user.name, forKey: "name")
+        KeychainWrapper.standard.set(user.accessToken, forKey: "accessToken")
     }
     
     func showAlert(_ message : String){
