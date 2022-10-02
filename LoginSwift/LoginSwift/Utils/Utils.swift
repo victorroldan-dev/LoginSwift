@@ -28,3 +28,17 @@ class Utils{
         }
     }
 }
+
+public struct Identifiers{
+    static let email = "email"
+    static let password = "password"
+    static let loginButton = "login-button"
+    static let eyeButton = "eye-button"
+    static let forgotPassword = "forgot-passwod-button"
+    static let alertErrorLogin = "alert-error-login"
+    
+    static let userId = "id-label"
+    static let userName = "name-label"
+    static let userEmail = "email-label"
+    static let logoutButton = "logout-button"
+}

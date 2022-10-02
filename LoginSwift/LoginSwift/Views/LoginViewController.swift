@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configIdentifiers()
         layoutLoginButton()
         layoutTextFields()
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
@@ -41,6 +42,14 @@ class LoginViewController: UIViewController {
             string: "Password",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray.withAlphaComponent(0.5)]
         )
+    }
+    
+    private func configIdentifiers(){
+        emailTextField.accessibilityIdentifier = Identifiers.email
+        passwordTextField.accessibilityIdentifier = Identifiers.password
+        eyeButton.accessibilityIdentifier = Identifiers.eyeButton
+        loginButton.accessibilityIdentifier = Identifiers.loginButton
+        forgotPasswordButton.accessibilityIdentifier = Identifiers.forgotPassword
     }
     
     private func layoutLoginButton(){
@@ -99,7 +108,7 @@ class LoginViewController: UIViewController {
     
     func showAlert(_ message : String){
         let alert = UIAlertController(title: "Alerta", message: message, preferredStyle: .alert)
-
+        alert.view.accessibilityIdentifier = Identifiers.alertErrorLogin
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { action in
             if action.style == .cancel{
                 print("ok button pressed")

@@ -15,11 +15,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var userEmailLabel: UILabel!
     private var defaults = UserDefaults.standard
     
+    @IBOutlet weak var logoutButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        configIdentifiers()
         printUserInfo()
-        
-        print("email: ", defaults.string(forKey: "email"))
     }
     
     func printUserInfo(){
@@ -40,7 +40,13 @@ class HomeViewController: UIViewController {
         userEmailLabel.layer.cornerRadius = 5
         userIdLabel.layer.cornerRadius = 5
         userNameLabel.layer.cornerRadius = 5
-       
+    }
+    
+    private func configIdentifiers(){
+        userIdLabel.accessibilityIdentifier = Identifiers.userId
+        userNameLabel.accessibilityIdentifier = Identifiers.userName
+        userEmailLabel.accessibilityIdentifier = Identifiers.userEmail
+        logoutButton.accessibilityIdentifier = Identifiers.logoutButton
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
