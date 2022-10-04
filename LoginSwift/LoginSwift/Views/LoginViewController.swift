@@ -20,7 +20,23 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         layoutLoginButton()
         layoutTextFields()
+        configTextFields()
+        configLoginButton()
+    }
+    
+    func configLoginButton(){
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        loginButton.isEnabled = false
+    }
+    
+    func configTextFields(){
+        //Email
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.textContentType = .emailAddress
+        
+        //Password
+        emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     private func layoutTextFields(){
@@ -107,5 +123,14 @@ class LoginViewController: UIViewController {
         }))
         
         present(alert, animated: true)
+    }
+    
+    @objc func textFieldDidChange(_ : UITextField){
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else{
+            loginButton.isEnabled = false
+                    return
+                }
+        loginButton.isEnabled = true
     }
 }
